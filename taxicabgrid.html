@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+
+        //defining variables
+        var directions = "R2, L3, R2, R4, L2, L1, R2, R4, R1, L4, L5, R5, R5, R2, R2, R1, L2, L3, L2, L1, R3, L5, R187, R1, R4, L1, R5, L3, L4, R50, L4, R2, R70, L3, L2, R4, R3, R194, L3, L4, L4, L3, L4, R4, R5, L1, L5, L4, R1, L2, R4, L5, L3, R4, L5, L5, R5, R3, R5, L2, L4, R4, L1, R3, R1, L1, L2, R2, R2, L3, R3, R2, R5, R2, R5, L3, R2, L5, R1, R2, R2, L4, L5, L1, L4, R4, R3, R1, R2, L1, L2, R4, R5, L2, R3, L4, L5, L5, L4, R4, L2, R1, R1, L2, L3, L2, R2, L4, R3, R2, L1, L3, L2, L4, L4, R2, L3, L3, R2, L4, L3, R4, R3, L2, L1, L4, R4, R2, L4, L4, L5, L1, R2, L5, L2, L3, R2, L2";
+        var rotation = 0;
+        var x = 0;
+        var y = 0;
+        var stringlength = directions.length;
+        var distance = "";
+        var i = 0;
+        var w = "";
+
+        //starting loop
+        while (i < stringlength) {
+            //getting one character from string
+            w = directions[i];
+            i++;
+            z = String(w);
+            w = "";
+            //figuring out what direction we're headed
+                if (z == "R") {
+                    rotation = rotation + 1;
+                    z = "";
+                }
+                if (z == "L") {
+                    rotation = rotation - 1;
+                    z = "";
+                }
+               if (rotation == 0) {
+                rotation = 4;
+               }
+               if (rotation == 5) {
+                rotation = 1;
+               }
+            //how many blocks we go into this direction
+
+            if (z == ",") {
+                //west
+
+                if (rotation == 1) {
+                    x = x + Number(distance);
+                }
+                //south
+                if (rotation == 2) {
+                    y = y - Number(distance);
+                }
+                //east
+                if (rotation == 3) {
+                    x = x - Number(distance);
+                }
+                //north
+                if (rotation == 4) {
+                    y = y + Number(distance);
+                }
+
+                distance = "";
+                z = "";
+                i++;
+            } 
+            if (0 < Number(z) < 10) {
+                distance = distance + z;
+                z = "";
+            }
+        }
+        if (x => 0) {
+            directionx = "East";
+        }
+        if (x < 0) {
+            directionx = "West";
+            x = x * -1;
+        }
+        if (y => 0) {
+            directiony = "North";
+        }
+        if (y < 0) {
+            directiony = "South";
+            y = y * -1;
+        }
+        total = x + y;
+        document.write(x + " " + directionx + ", " + y + " " + directiony + ". ");
+        document.write("Total distance travelled is " + total);
+    </script>
+</body>
+</html>
